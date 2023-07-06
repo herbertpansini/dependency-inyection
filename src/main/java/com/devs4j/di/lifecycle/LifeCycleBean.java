@@ -13,7 +13,7 @@ import jakarta.annotation.PreDestroy;
 
 @Component
 //@Scope("prototype") -- Recordemos que PreDestroy no se ejecuta para beans de tipo prototype
-@Lazy
+@Lazy(false)
 public class LifeCycleBean implements BeanNameAware, InitializingBean, DisposableBean {
 	
 	private static final Logger log = LoggerFactory.getLogger(LifeCycleBean.class);
