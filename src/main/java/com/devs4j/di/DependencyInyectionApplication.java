@@ -6,11 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.devs4j.di.qualifiers.Animal;
-import com.devs4j.di.qualifiers.Avion;
-import com.devs4j.di.qualifiers.Nido;
-import com.devs4j.di.qualifiers.Pajaro;
-import com.devs4j.di.qualifiers.Perro;
+import com.devs4j.di.profiles.EnvironmentService;
 
 @SpringBootApplication
 public class DependencyInyectionApplication {
@@ -20,19 +16,9 @@ public class DependencyInyectionApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInyectionApplication.class, args);
 		
-		Perro perro = context.getBean(Perro.class);
-		log.info("Objeto perro {}", perro.getNombre());
+		EnvironmentService environmentService = context.getBean(EnvironmentService.class);
 		
-		Pajaro pajaro = context.getBean(Pajaro.class);
-		log.info("Objeto pajaro {}", pajaro.getNombre());
+		log.info("Active environment {}", environmentService.getEnvironment());
 		
-		Avion avion = context.getBean(Avion.class);
-		avion.volar();
-		
-		Animal animal = context.getBean("pajarito", Animal.class);
-		log.info("Animal nombre = {}, edad = {}", animal.getNombre(), animal.getEdad());
-		
-		Nido nido = context.getBean(Nido.class);
-		nido.imprimir();
 	}
 }
